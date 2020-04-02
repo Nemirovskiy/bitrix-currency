@@ -4,28 +4,32 @@ namespace Nemin;
 class Helper
 {
 	/**
-	 * @param $integer
+	 * Метод получения окончания слова после числа
 	 *
-	 *  Возвращает вариант окончания после числительных
+	 * Возвращает строку с вариантом окончания после числительных
 	 *
-	 *  <li> 21 пирог
-	 *  <li> 22 пирога
-	 *  <li> 26 пирогов
+	 * @param integer $integer  - Число
+	 * @param array $arMessage  - Массив из трех вариантов окончаний
 	 *
-	 * @return int
+	 * $arMess = array("пирог", "пирога", "пирогов");
+	 *
+	 * @return string Строка с правильным окончанием
 	 */
-	static public function getNumberEnding($integer){
-		$ending = 3;
+	static public function getNumberEnding($integer,$arMessage){
+		if(count($arMessage) !== 3){
+			return "";
+		}
+		$ending = 2;
 		$number = $integer % 100;
 		if($number < 5 || $number > 20){
 			$index = $number % 10;
 			if($index == 1){
-				$ending = 1;
+				$ending = 0;
 			}elseif(in_array($index, array(2,3,4))){
-				$ending = 2;
+				$ending = 1;
 			}
 		}
-		return $ending;
+		return $arMessage[$ending];
 	}
 
 
