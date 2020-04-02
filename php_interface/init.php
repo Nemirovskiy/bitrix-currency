@@ -1,5 +1,5 @@
 <?
 $arClass = array(
-	"\\Nemin\\Main" => '/local/lib/nemin/Main.php',
+	"\\Nemin\\Helper" => '/local/lib/Nemin/Helper.php',
 );
 Bitrix\Main\Loader::registerAutoLoadClasses(null, $arClass);
