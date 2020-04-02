@@ -1,0 +1,1 @@
+<?$MESS["NEMIN_CURRENCY_PARAM_TYPE"] = "Валюта";
