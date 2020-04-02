@@ -4,12 +4,16 @@ use Bitrix\Main\Localization\Loc;
 ?>
 <p>
     <?if($arResult["VALUE"]):?>
-        <?=$arResult["NOMINAL"]?> <?=$arResult["NAME"]?> = <?=$arResult["VALUE"]?> &#8381;
+        <?=$arResult["NOMINAL"]?> <?=$arResult["NAME"]?> = <?=$arResult["VALUE"]?>
+	    <?= \Nemin\Helper::getNumberEnding(
+		    $arResult["VALUE"],
+		    array(
+			    Loc::getMessage('NEMIN_CURRENCY_VALUE_1'),
+			    Loc::getMessage('NEMIN_CURRENCY_VALUE_2'),
+			    Loc::getMessage('NEMIN_CURRENCY_VALUE_3'),
+		    )
+	    )?>
     <?else:?>
         <?= Loc::getMessage("NEMIN_CURRENCY_ERROR_TITLE") ?>
     <?endif;?>
-</p>
-<p>
-    <?=$arResult["VALUE"]?>
-    <?=Loc::getMessage('NEMIN_CURRENCY_VALUE_'.\Nemin\Helper::getNumberEnding(intval($arResult["VALUE"])))?>
 </p>
