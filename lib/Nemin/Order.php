@@ -9,6 +9,21 @@ use \Bitrix\Sale\Compatible\EventCompatibility;
 
 class Order
 {
+	static public function orderSaved(Event $event){
+		/** @var \Bitrix\Sale\Order $order */
+		$order = $event->getParameter("ENTITY");
+		if($order->getField('STATUS_ID') === "F"){
+			$arFields = array(
+				"PERSONAL_COUNTRY"=>"",
+				"PERSONAL_STATE"=>"",
+				"PERSONAL_CITY"=>"",
+				"PERSONAL_ZIP"=>"",
+				"PERSONAL_STREET"=>"",
+				"PERSONAL_MAILBOX"=>"",
+			);
+			(new \CUser)->Update($order->getField('USER_ID'),$arFields);
+		}
+	}
 
 	static public function sendEmail($event, &$lid, &$arFields, &$message_id, &$files, &$languageId){
 		\Bitrix\Main\Loader::includeModule('sale');
